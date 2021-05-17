@@ -7,24 +7,24 @@ ipcs
 
 **ipcs命令** 用于报告Linux中进程间通信设施的状态，显示的信息包括消息列表、共享内存和信号量的信息。
 
-### 语法  
+###  语法
 
-```
+```shell
 ipcs(选项)
 ```
 
-### 选项  
+###  选项
 
-```
+```shell
 -a：显示全部可显示的信息；
 -q：显示活动的消息队列信息；
 -m：显示活动的共享内存信息；
 -s：显示活动的信号量信息。
 ```
 
-### 实例  
+###  实例
 
-```
+```shell
 ipcs -a
 ------ Shared Memory Segments --------
 key        shmid      owner      perms      bytes      nattch     status      

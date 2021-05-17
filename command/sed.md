@@ -5,20 +5,20 @@ sed
 
 ## 补充说明
 
-**sed** 是一种流编辑器，它是文本处理中非常中的工具，能够完美的配合正则表达式使用，功能不同凡响。处理时，把当前处理的行存储在临时缓冲区中，称为“模式空间”（pattern space），接着用sed命令处理缓冲区中的内容，处理完成后，把缓冲区的内容送往屏幕。接着处理下一行，这样不断重复，直到文件末尾。文件内容并没有 改变，除非你使用重定向存储输出。Sed主要用来自动编辑一个或多个文件；简化对文件的反复操作；编写转换程序等。
+**sed** 是一种流编辑器，它是文本处理中非常重要的工具，能够完美的配合正则表达式使用，功能不同凡响。处理时，把当前处理的行存储在临时缓冲区中，称为“模式空间”（pattern space），接着用sed命令处理缓冲区中的内容，处理完成后，把缓冲区的内容送往屏幕。接着处理下一行，这样不断重复，直到文件末尾。文件内容并没有 改变，除非你使用重定向存储输出。Sed主要用来自动编辑一个或多个文件；简化对文件的反复操作；编写转换程序等。
 
 ## sed的选项、命令、替换标记  
 
  **命令格式** 
 
-```
+```shell
 sed [options] 'command' file(s)
 sed [options] -f scriptfile file(s)
 ```
 
-### 选项  
+###  选项 
 
-```
+```shell
 -e<script>或--expression=<script>：以选项中的指定的script来处理输入的文本文件；
 -f<script文件>或--file=<script文件>：以选项中指定的script文件来处理输入的文本文件；
 -h或--help：显示帮助；
@@ -26,13 +26,13 @@ sed [options] -f scriptfile file(s)
 -V或--version：显示版本信息。
 ```
 
-### 参数  
+###  参数 
 
 文件：指定待处理的文本文件列表。
 
-### sed命令  
+###  sed命令 
 
-```bash
+```shell
 a\ # 在当前行下面插入文本。
 i\ # 在当前行上面插入文本。
 c\ # 把选定的行改为新的文本。
@@ -60,9 +60,9 @@ W file # 写并追加模板块的第一行到file末尾。
 # # 把注释扩展到下一个换行符以前。  
 ```
 
-### sed替换标记  
+###  sed替换标记 
 
-```bash
+```shell
 g # 表示行内全面替换。  
 p # 表示打印行。  
 w # 表示把行写入一个文件。  
@@ -72,14 +72,14 @@ y # 表示把一个字符翻译为另外的字符（但是不用于正则表达�
 & # 已匹配字符串标记
 ```
 
-### sed元字符集  
+###  sed元字符集 
 
-```bash
+```shell
 ^ # 匹配行开始，如：/^sed/匹配所有以sed开头的行。
 $ # 匹配行结束，如：/sed$/匹配所有以sed结尾的行。
 . # 匹配一个非换行符的任意字符，如：/s.d/匹配s后接一个任意字符，最后是d。
 * # 匹配0个或多个字符，如：/*sed/匹配所有模板是一个或多个空格后紧跟sed的行。
-[] # 匹配一个指定范围内的字符，如/[ss]ed/匹配sed和Sed。  
+[] # 匹配一个指定范围内的字符，如/[sS]ed/匹配sed和Sed。  
 [^] # 匹配一个不在指定范围内的字符，如：/[^A-RT-Z]ed/匹配不包含A-R和T-Z的一个字母开头，紧跟ed的行。
 \(..\) # 匹配子串，保存匹配的字符，如s/\(love\)able/\1rs，loveable被替换成lovers。
 & # 保存搜索字符用来替换其他字符，如s/love/ **&** /，love这成 **love** 。
@@ -92,11 +92,11 @@ x\{m,n\} # 重复字符x，至少m次，不多于n次，如：/0\{5,10\}/匹配5
 
 ## sed用法实例  
 
-### 替换操作：s命令  
+###  替换操作：s命令 
 
 替换文本中的字符串：
 
-```
+```shell
 sed 's/book/books/' file
 ```
 
@@ -104,23 +104,23 @@ sed 's/book/books/' file
 
 sed -n 's/test/TEST/p' file
 
-直接编辑文件 **选项-i** ，会匹配file文件中每一行的第一个book替换为books：
+直接编辑文件 **选项-i** ，会匹配file文件中每一行的所有book替换为books：
 
-```
+```shell
 sed -i 's/book/books/g' file
 ```
 
-### 全面替换标记g  
+###  全面替换标记g 
 
 使用后缀 /g 标记会替换每一行中的所有匹配：
 
-```
+```shell
 sed 's/book/books/g' file
 ```
 
 当需要从第N处匹配开始替换时，可以使用 /Ng：
 
-```
+```shell
 echo sksksksksksk | sed 's/sk/SK/2g'
 skSKSKSKSKSK
 
@@ -131,94 +131,94 @@ echo sksksksksksk | sed 's/sk/SK/4g'
 skskskSKSKSK
 ```
 
-### 定界符  
+###  定界符 
 
 以上命令中字符 / 在sed中作为定界符使用，也可以使用任意的定界符：
 
-```
+```shell
 sed 's:test:TEXT:g'
 sed 's|test|TEXT|g'
 ```
 
 定界符出现在样式内部时，需要进行转义：
 
-```
+```shell
 sed 's/\/bin/\/usr\/local\/bin/g'
 ```
 
-### 删除操作：d命令  
+###  删除操作：d命令 
 
 删除空白行：
 
-```
+```shell
 sed '/^$/d' file
 ```
 
 删除文件的第2行：
 
-```
+```shell
 sed '2d' file
 ```
 
 删除文件的第2行到末尾所有行：
 
-```
+```shell
 sed '2,$d' file
 ```
 
 删除文件最后一行：
 
-```
+```shell
 sed '$d' file
 ```
 
 删除文件中所有开头是test的行：
 
-```
+```shell
 sed '/^test/'d file
 ```
 
-### 已匹配字符串标记&  
+###  已匹配字符串标记& 
 
 正则表达式 \w\+ 匹配每一个单词，使用 [&] 替换它，& 对应于之前所匹配到的单词：
 
-```
+```shell
 echo this is a test line | sed 's/\w\+/[&]/g'
 [this] [is] [a] [test] [line]
 ```
 
 所有以192.168.0.1开头的行都会被替换成它自已加localhost：
 
-```
+```shell
 sed 's/^192.168.0.1/&localhost/' file
 192.168.0.1localhost
 ```
 
-### 子串匹配标记\1  
+###  子串匹配标记\1 
 
 匹配给定样式的其中一部分：
 
-```
+```shell
 echo this is digit 7 in a number | sed 's/digit \([0-9]\)/\1/'
 this is 7 in a number
 ```
 
 命令中 digit 7，被替换成了 7。样式匹配到的子串是 7，\(..\) 用于匹配子串，对于匹配到的第一个子串就标记为  **\1** ，依此类推匹配到的第二个结果就是  **\2** ，例如：
 
-```
+```shell
 echo aaa BBB | sed 's/\([a-z]\+\) \([A-Z]\+\)/\2 \1/'
 BBB aaa
 ```
 
 love被标记为1，所有loveable会被替换成lovers，并打印出来：
 
-```
+```shell
 sed -n 's/\(love\)able/\1rs/p' file
 ```
 
-### 组合多个表达式  
+###  组合多个表达式 
 
-```
+```shell
 sed '表达式' | sed '表达式'
 
 等价于：
@@ -226,41 +226,41 @@ sed '表达式' | sed '表达式'
 sed '表达式; 表达式'
 ```
 
-### 引用  
+###  引用 
 
 sed表达式可以使用单引号来引用，但是如果表达式内部包含变量字符串，就需要使用双引号。
 
-```
+```shell
 test=hello
 echo hello WORLD | sed "s/$test/HELLO"
 HELLO WORLD
 ```
 
-### 选定行的范围：,（逗号）  
+###  选定行的范围：,（逗号） 
 
 所有在模板test和check所确定的范围内的行都被打印：
 
-```
+```shell
 sed -n '/test/,/check/p' file
 ```
 
 打印从第5行开始到第一个包含以test开始的行之间的所有行：
 
-```
+```shell
 sed -n '5,/^test/p' file
 ```
 
 对于模板test和west之间的行，每行的末尾用字符串aaa bbb替换：
 
-```
+```shell
 sed '/test/,/west/s/$/aaa bbb/' file
 ```
 
-### 多点编辑：e命令  
+###  多点编辑：e命令 
 
 -e选项允许在同一行里执行多条命令：
 
-```
+```shell
 sed -e '1,5d' -e 's/test/check/' file
 ```
 
@@ -268,129 +268,126 @@ sed -e '1,5d' -e 's/test/check/' file
 
 和 -e 等价的命令是 --expression：
 
-```
+```shell
 sed --expression='s/test/check/' --expression='/love/d' file
 ```
 
-### 从文件读入：r命令  
+###  从文件读入：r命令 
 
 file里的内容被读进来，显示在与test匹配的行后面，如果匹配多行，则file的内容将显示在所有匹配行的下面：
 
-```
+```shell
 sed '/test/r file' filename
 ```
 
-### 写入文件：w命令    
+###  写入文件：w命令   
 
 在example中所有包含test的行都被写入file里：
 
-```
+```shell
 sed -n '/test/w file' example
 ```
 
-### 追加（行下）：a\命令  
+###  追加（行下）：a\命令 
 
 将 this is a test line 追加到 以test 开头的行后面：
 
-```
+```shell
 sed '/^test/a\this is a test line' file
 ```
 
 在 test.conf 文件第2行之后插入 this is a test line：
 
-```
+```shell
 sed -i '2a\this is a test line' test.conf
 ```
 
-### 插入（行上）：i\命令  
+###  插入（行上）：i\命令 
 
 将 this is a test line 追加到以test开头的行前面：
 
-```
+```shell
 sed '/^test/i\this is a test line' file
 ```
 
 在test.conf文件第5行之前插入this is a test line：
 
-```
+```shell
 sed -i '5i\this is a test line' test.conf
 ```
 
-### 下一个：n命令  
+###  下一个：n命令 
 
 如果test被匹配，则移动到匹配行的下一行，替换这一行的aa，变为bb，并打印该行，然后继续：
 
-```
+```shell
 sed '/test/{ n; s/aa/bb/; }' file
 ```
 
-### 变形：y命令  
+###  变形：y命令 
 
 把1~10行内所有abcde转变为大写，注意，正则表达式元字符不能使用这个命令：
 
-```
+```shell
 sed '1,10y/abcde/ABCDE/' file
 ```
 
-### 退出：q命令  
+###  退出：q命令 
 
 打印完第10行后，退出sed
 
-```
+```shell
 sed '10q' file
 ```
 
-### 保持和获取：h命令和G命令  
+###  保持和获取：h命令和G命令 
 
 在sed处理文件的时候，每一行都被保存在一个叫模式空间的临时缓冲区中，除非行被删除或者输出被取消，否则所有被处理的行都将 打印在屏幕上。接着模式空间被清空，并存入新的一行等待处理。
 
-```
+```shell
 sed -e '/test/h' -e '$G' file
 ```
 
 在这个例子里，匹配test的行被找到后，将存入模式空间，h命令将其复制并存入一个称为保持缓存区的特殊缓冲区内。第二条语句的意思是，当到达最后一行后，G命令取出保持缓冲区的行，然后把它放回模式空间中，且追加到现在已经存在于模式空间中的行的末尾。在这个例子中就是追加到最后一行。简单来说，任何包含test的行都被复制并追加到该文件的末尾。
 
-### 保持和互换：h命令和x命令  
+###  保持和互换：h命令和x命令 
 
 互换模式空间和保持缓冲区的内容。也就是把包含test与check的行互换：
 
-```
+```shell
 sed -e '/test/h' -e '/check/x' file
 ```
 
-### 脚本scriptfile  
+###  脚本scriptfile 
 
 sed脚本是一个sed的命令清单，启动Sed时以-f选项引导脚本文件名。Sed对于脚本中输入的命令非常挑剔，在命令的末尾不能有任何空白或文本，如果在一行中有多个命令，要用分号分隔。以#开头的行为注释行，且不能跨行。
 
-```
+```shell
 sed [options] -f scriptfile file(s)
 ```
 
-### 打印奇数行或偶数行  
+###  打印奇数行或偶数行 
 
 方法1：
 
-```
+```shell
 sed -n 'p;n' test.txt  #奇数行
 sed -n 'n;p' test.txt  #偶数行
-
 ```
 
 方法2：
 
-```
+```shell
 sed -n '1~2p' test.txt  #奇数行
 sed -n '2~2p' test.txt  #偶数行
-
 ```
 
-### 打印匹配字符串的下一行  
+###  打印匹配字符串的下一行 
 
-```
+```shell
 grep -A 1 SCC URFILE
 sed -n '/SCC/{n;p}' URFILE
 awk '/SCC/{getline; print}' URFILE
-
 ```
 
 

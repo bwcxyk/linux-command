@@ -11,15 +11,15 @@ traceroute
 
 traceroute通过发送小的数据包到目的设备直到其返回，来测量其需要多长时间。一条路径上的每个设备traceroute要测3次。输出结果中包括每次测试的时间(ms)和设备的名称（如有的话）及其ip地址。
 
-### 语法  
+###  语法 
 
-```
+```shell
 traceroute(选项)(参数)
 ```
 
-### 选项  
+###  选项 
 
-```
+```shell
 -d：使用Socket层级的排错功能；
 -f<存活数值>：设置第一个检测数据包的存活数值TTL的大小；
 -F：设置勿离断位；
@@ -37,13 +37,13 @@ traceroute(选项)(参数)
 -x：开启或关闭数据包的正确性检验。
 ```
 
-### 参数  
+###  参数 
 
 主机：指定目的主机IP地址或主机名。
 
-### 实例  
+###  实例 
 
-```
+```shell
 traceroute www.58.com
 traceroute to www.58.com (211.151.111.30), 30 hops max, 40 byte packets
  1  unknown (192.168.2.1)  3.453 ms  3.801 ms  3.937 ms
@@ -70,7 +70,7 @@ traceroute to www.58.com (211.151.111.30), 30 hops max, 40 byte packets
 
 **跳数设置**
 
-```
+```shell
 [root@localhost ~]# traceroute -m 10 www.baidu.com
 traceroute to www.baidu.com (61.135.169.105), 10 hops max, 40 byte packets
  1  192.168.74.2 (192.168.74.2)  1.534 ms  1.775 ms  1.961 ms
@@ -87,7 +87,7 @@ traceroute to www.baidu.com (61.135.169.105), 10 hops max, 40 byte packets
 
 其它一些实例
 
-```
+```shell
 traceroute -m 10 www.baidu.com # 跳数设置
 traceroute -n www.baidu.com    # 显示IP地址，不查主机名
 traceroute -p 6888 www.baidu.com  # 探测包使用的基本UDP端口设置6888

@@ -17,16 +17,17 @@ ulimit 用于限制 shell 启动进程所占用的资源，支持以下各种类
 
 ### 语法
 
-```
+```shell
 ulimit(选项)
 ```
 
 ### 选项
 
-```
+```shell
 -a：显示目前资源限制的设定；
 -c <core文件上限>：设定core文件的最大值，单位为区块；
 -d <数据节区大小>：程序数据节区的最大值，单位为KB；
+-e 默认进程优先级, 值越小优先级越高
 -f <文件大小>：shell所能建立的最大文件，单位为区块；
 -H：设定资源的硬性限制，也就是管理员所设下的限制；
 -m <内存大小>：指定可使用内存的上限，单位为KB；
@@ -41,7 +42,7 @@ ulimit(选项)
 
 ### 实例
 
-```
+```shell
 [root@localhost ~]# ulimit -a
 core file size          (blocks, -c) 0           #core文件的最大值为100 blocks。
 data seg size           (kbytes, -d) unlimited   #进程的数据段可以任意大。

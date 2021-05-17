@@ -7,15 +7,15 @@ iftop
 
 **iftop命令** 是一款实时流量监控工具，监控TCP/IP连接等，缺点就是无报表功能。必须以root身份才能运行。
 
-### 语法  
+###  语法
 
-```
+```shell
 iftop(选项)
 ```
 
-### 选项  
+###  选项
 
-```
+```shell
 iftop: display bandwidth usage on an interface by host
 
 Synopsis: iftop -h | [-npblNBP] [-i interface] [-f filter code]
@@ -49,7 +49,6 @@ Synopsis: iftop -h | [-npblNBP] [-i interface] [-f filter code]
    The following options are only available in combination with -t
    -s num              print one single text output afer num seconds, then quit
    -L num              number of lines to print
-
 ```
 
 ### 界面说明
@@ -61,11 +60,9 @@ Synopsis: iftop -h | [-npblNBP] [-i interface] [-f filter code]
 > 最后三行表示发送，接收和全部的流量，
 > 第二列为你运行iftop到目前流量，第三列为高峰值，第四列为平均值。
 
-### 实例  
+###  实例
 
-
-
-```bash
+```shell
 iftop           # 默认是监控第一块网卡的流量
 iftop -i eth1   # 监控eth1
 iftop -n        # 直接显示IP, 不进行DNS反解析

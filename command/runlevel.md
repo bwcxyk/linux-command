@@ -7,13 +7,13 @@ runlevel
 
 **runlevel命令** 用于打印当前Linux系统的运行等级。
 
-### 语法  
+###  语法
 
-```
+```shell
 runlevel
 ```
 
-### 知识扩展  
+###  知识扩展
 
 linux操作系统自从开始启动至启动完毕需要经历几个不同的阶段，这几个阶段就叫做runlevel，同样，当linux操作系统关闭时也要经历另外几个不同的runlevel，下面我们就准备详细介绍一下runlevel，并向您展示一些小技巧来让您的linux系统避免不必要的重启动。
 
@@ -21,7 +21,7 @@ runlevel可以认为是系统状态，形象一点，您可以认为runlevel有�
 
 在大多数的linux发行版本中，通常有8个runlevel：
 
-```
+```shell
 0 停机
 1 单用户模式
 2 多用户，没有 NFS

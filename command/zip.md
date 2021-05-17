@@ -9,13 +9,13 @@ zip
 
 ### 语法
 
-```
+```shell
 zip(选项)(参数)
 ```
 
 ### 选项
 
-```
+```shell
 -A：调整可执行的自动解压缩文件；
 -b<工作目录>：指定暂时存放文件的目录；
 -c：替每个被压缩的文件加上注释；
@@ -61,39 +61,69 @@ zip(选项)(参数)
 
 将`/home/Blinux/html/`这个目录下所有文件和文件夹打包为当前目录下的html.zip：
 
-```
+```shell
 zip -q -r html.zip /home/Blinux/html
 ```
 
 上面的命令操作是将绝对地址的文件及文件夹进行压缩，以下给出压缩相对路径目录，比如目前在Bliux这个目录下，执行以下操作可以达到以上同样的效果：
 
-```
+```shell
 zip -q -r html.zip html
 ```
 
 比如现在我的html目录下，我操作的zip压缩命令是：
 
-```
+```shell
 zip -q -r html.zip *
+```
+
+压缩 `example/basic/` 目录内容到 `basic.zip` 压缩包中 `-x` 指定排除目录，注意没有双引号将不起作用。
+
+```shell
+zip -r basic.zip example/basic/ -x "example/basic/node_modules/*" -x "example/basic/build/*" -x "example/basic/coverage/*"
+```
+
+上面压缩解压出来，内容存放在 `example/basic/`， 如果想存放到根目录，进入目录进行压缩，目前没有找到一个合适的参数来解决此问题。
+
+```
+cd example/basic/ && zip -r basic.zip . -x "node_modules/*" -x "build/*" -x "coverage/*"
 ```
 
 压缩效率选择:
 
-```
+```shell
 zip -9 # 1-9 faster->better
+```
+
+创建 `public_html` 目录下忽略所有文件和文件夹，排除包括文本 `backup` 的所有文件。
+
+```shell
+$ zip -r public_html.zip public_html -x *backup*
+```
+
+`httpdocs` 目录忽略 `.svn` 文件或 `git` 的文件和目录下创建所有文件的归档。
+
+```shell
+$ zip -r httpdocs.zip httpdocs --exclude *.svn* --exclude *.git*
+```
+
+`httpdocs` 目录忽略的所有文件，并与 `.log` 结尾的目录下创建所有文件的归档。
+
+```shell
+$ zip -r httpdocs.zip httpdocs --exclude "*.log"
 ```
 
 ### 问题解决
 
 CentOS7中命令找不到
 
-```
+```shell
 -Bash: Unzip: Command Not Found
 ```
 
 解决方法
 
-```bash
+```shell
 yum install -y unzip zip
 ```
 

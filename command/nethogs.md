@@ -16,14 +16,14 @@ nethogs
 本文为你介绍如何在Unix/Linux操作系统下如何安装和使用NetHogs按进程监控网络带宽使用率。
 
 
-### 语法  
+###  语法 
 
-```
+```shell
 nethogs（选项）（参数）
 ```
-### 选项  
+###  选项 
 
-```bash
+```shell
 usage: nethogs [-V] [-h] [-b] [-d seconds] [-v mode] [-c count] [-t] [-p] [-s] [device [device [device ...]]]
   -V : 打印版本。
   -h : 打印此帮助。
@@ -46,7 +46,7 @@ usage: nethogs [-V] [-h] [-b] [-d seconds] [-v mode] [-c count] [-t] [-p] [-s] [
 
 其他参数和用法
 
-```
+```shell
 -d : 刷新间隔
 -h : 帮助
 -p : promiscious 模式
@@ -69,32 +69,30 @@ usage: nethogs [-V] [-h] [-b] [-d seconds] [-v mode] [-c count] [-t] [-p] [-s] [
 
 要安装NetHogs，你必须要启用你所用Linux下的EPEL源。然后运行下面的yum命令下载安装NetHogs包。
 
-```
-# yum install nethogs
+```shell
+yum install nethogs
 ```
 
 **在Ubuntu、Linux mint和Debian下安装NetHogs**
 
 键入apt-get命令安装NetHogs包：
 
-```
+```shell
 $ sudo apt-get install nethogs
 ```
 
-### NetHogs用法  
+###  NetHogs用法 
 
 在基于RedHat系统下键入如下命令启动NetHogs工具。
 
-```
-# nethogs
-
+```shell
+nethogs
 ```
 
 在Debian/Ubuntu/Linux Mint下要执行NetHogs你必须拥有root权限：
 
-```
+```shell
 $ sudo nethogs
-
 ```
 
 !nethogs
@@ -103,40 +101,35 @@ Ubuntu 12.10 下的NetHogs预览
 
 正如上图所示，send列和received列显示的是按照每个进程的流量统计。总的收发数据带宽在最下方，而且可以用交互命令控制排序，下面将要讨论这些交互命令。
 
-### NetHogs 命令行参数  
+###  NetHogs 命令行参数 
 
 以下就是NetHogs命令行的参数，用-d来添加刷新频率参数，device name 用来检测给定的某个或者某些设备的带宽（默认是eth0）。例如：设置5秒钟的刷新频率，键入如下命令即可：
 
+```shell
+nethogs -d 5
 ```
-# nethogs -d 5
 
-```
-
-```
+```shell
 $ sudo nethogs -d 5
-
 ```
 
 如果只用来监视设备（eth0）的网络带宽可以使用如下命令：
 
+```shell
+nethogs eth0
 ```
-# nethogs eth0
 
-```
-
-```
+```shell
 $ sudo nethogs eth0
-
 ```
 
 如果要同时监视eth0和eth1接口，使用以下命令即可：
 
+```shell
+nethogs eth0 eth1
 ```
-# nethogs eth0 eth1
 
-```
-
-```
+```shell
 $ sudo nethogs eth0 eth1
 
 ```
